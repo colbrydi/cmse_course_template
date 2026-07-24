@@ -571,9 +571,6 @@
             <a href="{{ item.url | relative_url }}" {% if page.path contains folder_path_token %}class="active" aria-current="page"{% endif %}>{{ label }}</a>
           {% endif %}
         {% endfor %}
-
-        <a href="{{ '/Seeking-Community_Partners' | relative_url }}">Community Partners</a>
-
         <div class="search-box">
           <form role="search" action="{{ '/search.json' | relative_url }}" onsubmit="return false;">
             <label class="sr-only" for="search-input">Search site</label>

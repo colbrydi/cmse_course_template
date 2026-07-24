@@ -1,8 +1,12 @@
 theme: jekyll-theme-minimal
-title: "Course Website"
+title: "MSU Course Website"
 description: "Reusable schedule-first course website template."
 logo: /assets/img/MSU.png
+<<<<<<< HEAD
 baseurl: /cmse_course_template
+=======
+baseurl: /
+>>>>>>> f21524b (Cleaning up and adding TODOS)
 permalink: /:year/:month/:day/:title
 exclude:
   - envs/

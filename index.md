@@ -1,27 +1,15 @@
 ---
 layout: schedule
-title: "FALL 2026 Schedule"
+title: "Course Description"
 order: 66
 mode: "schedule"
 ---
-# FALL 2026 Schedule
+# Course Description
 
 {% include schedule_widgets.html part="progress" %}
 
----
-## Seeking Fall 2026 and Spring 2027 Project community partners!
 
-If you have a project and are interested in being a CMSE495 community partner for **_Fall 2026_** and/or **_Spring 2027_** please reach out to the course instructor (Dr. Dirk Colbry <colbrydi@msu.edu>). For more information on becoming a project community partner please see our [Project community partner Page](./Seeking-Community_Partners)
-
-
----
-
-The CMSE 495 data science capstone course is intended to provide students with an opportunity to put together what they have learned across multiple courses to develop a final project that demonstrates their ability to work in a team on real-world problems.
-
-The capstone course has three major goals:
-1. Provide students with a high impact, end-to-end project experience where they can apply classroom experiences and data science skills to solve real-world problems. 
-2. Provide students with opportunities to learn and practice professional skills (communication, teamwork and leadership) in the context of team-based projects.
-3. Provide opportunities for students and faculty in the department to build relationships and network with industry partners, community organizations, and campus colleagues. 
+**⚠️TODO:** This is the course landing page. Add a description of the course here. 
 
 ## Navigating This Website
 
