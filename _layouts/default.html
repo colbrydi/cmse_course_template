@@ -550,7 +550,7 @@
   <header class="top-nav">
     <div class="nav-left">
       <a href="{{ '/' | relative_url }}" aria-label="Go to the schedule home page">
-        <img src="{{ '/assets/img/Capstone_Logo.png' | relative_url }}" alt="CMSE 495 logo">
+        <img src="{{ '/assets/img/MSU.png' | relative_url }}" alt="Michigan State University logo">
       </a>
       <div class="site-title">CMSE495 Data Science Capstone</div>
     </div>
@@ -590,8 +590,11 @@
 
   <footer class="site-footer">
     <div class="footer-content">
-      <p>Written by Dr. Dirk Colbry and Dr. Justin Grambel, Michigan State University</p>
-      <p class="footer-license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p> Please let us know how to make this website better by submitting an issue in the course <a href="https://github.com/msu-cmse-courses/cmse495-FS26">git repository (click here).</a></p>
+      <p>This course website is a reusable template for schedule-first course delivery.</p>
+      <p class="footer-license"><a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">Creative Commons Attribution-NonCommercial 4.0 International License</a>.</p>
+      {% if site.github and site.github.repository_url %}
+      <p>Suggestions and improvements are welcome via the <a href="{{ site.github.repository_url }}">GitHub repository</a>.</p>
+      {% endif %}
     </div>
   </footer>
 
