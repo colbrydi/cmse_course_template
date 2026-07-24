@@ -7,7 +7,6 @@ dependencies:
   - pyyaml
   - jupyterlab
   - ruby=3.2
-  - bundler
   - cmake
   - compilers
   - imagemagick
