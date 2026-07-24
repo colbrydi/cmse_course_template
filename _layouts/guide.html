@@ -1,7 +1,10 @@
 ---
 layout: default
 ---
-{% assign guide_pages = site.pages | where: "layout", "guide" | sort: "order" %}
+{% assign current_folder = page.path | split: '/' | first %}
+{% assign current_folder_path = current_folder | append: '/' %}
+{% assign guide_pages = site.pages | where: "layout", "guide" | sort: "path" %}
+{% assign section_label = current_folder | replace: '-', ' ' | replace: '_', ' ' %}
 {% assign current_index = -1 %}
 {% for item in guide_pages %}
   {% if item.url == page.url %}
@@ -16,22 +19,26 @@ layout: default
 
 <div class="layout">
   <aside class="left">
-    <nav aria-label="Course guide pages">
-      <h2>Course Guide</h2>
+    <nav aria-label="Reference pages">
+      <h2>{{ section_label }}</h2>
 
       {% if guide_pages.size > 0 %}
         <ul class="guide-list">
           {% for item in guide_pages %}
-            {% assign sublevel = item.order | modulo: 10 %}
-            <li class="guide-item {% if sublevel == 0 %}guide-item-section{% else %}guide-item-sub{% endif %}">
-              <a href="{{ item.url | relative_url }}" class="guide-link {% if sublevel == 0 %}guide-link-section{% else %}guide-link-sub{% endif %}{% if item.url == page.url %} active{% endif %}" {% if item.url == page.url %}aria-current="page"{% endif %}>
-                {{ item.title }}
-              </a>
-            </li>
+            {% if item.path contains current_folder_path %}
+              {% assign file_prefix = item.name | split: '-' | first | split: '.' | first %}
+              {% assign nav_order = item.order | default: file_prefix | plus: 0 %}
+              {% assign sublevel = nav_order | modulo: 10 %}
+              <li class="guide-item {% if sublevel == 0 %}guide-item-section{% else %}guide-item-sub{% endif %}">
+                <a href="{{ item.url | relative_url }}" class="guide-link {% if sublevel == 0 %}guide-link-section{% else %}guide-link-sub{% endif %}{% if item.url == page.url %} active{% endif %}" {% if item.url == page.url %}aria-current="page"{% endif %}>
+                  {{ item.title }}
+                </a>
+              </li>
+            {% endif %}
           {% endfor %}
         </ul>
       {% else %}
-        <p>No guide pages have been published yet.</p>
+        <p>No reference pages have been published yet.</p>
       {% endif %}
     </nav>
   </aside>

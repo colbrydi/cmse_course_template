@@ -560,7 +560,18 @@
 
       <nav id="nav-links" class="nav-links" aria-label="Primary">
         <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
-        <a href="{{ '/Guide/' | relative_url }}" {% if page.layout == "guide" %}class="active" aria-current="page"{% endif %}>Course Guide</a>
+
+        {% assign guide_root_candidates = site.pages | where: "layout", "guide" | sort: "path" %}
+        {% for item in guide_root_candidates %}
+          {% assign prefix = item.name | split: '-' | first | split: '.' | first %}
+          {% if prefix == "00" %}
+            {% assign folder_name = item.path | split: '/' | first %}
+            {% assign folder_path_token = folder_name | append: '/' %}
+            {% assign label = folder_name | replace: '-', ' ' | replace: '_', ' ' %}
+            <a href="{{ item.url | relative_url }}" {% if page.path contains folder_path_token %}class="active" aria-current="page"{% endif %}>{{ label }}</a>
+          {% endif %}
+        {% endfor %}
+
         <a href="{{ '/Seeking-Community_Partners' | relative_url }}">Community Partners</a>
 
         <div class="search-box">

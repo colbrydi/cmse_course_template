@@ -1,4 +1,4 @@
-.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring serve serve-fall serve-spring build-site clean-schedule-data
+.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring serve serve-fall serve-spring serve-4001 stop-serve build-site clean-schedule-data
 
 all: serve-fall
 
@@ -15,6 +15,8 @@ help:
 	@echo "  make schedule-spring"
 	@echo "  make serve"
 	@echo "  make serve-spring"
+	@echo "  make serve-4001"
+	@echo "  make stop-serve"
 	@echo "  make build-site"
 
 envs:
@@ -52,6 +54,13 @@ serve-fall: schedule-fall bundle-install
 
 serve-spring: schedule-spring bundle-install
 	./envs/bin/bundle exec jekyll serve --source . --trace
+
+serve-4001: schedule-fall bundle-install
+	./envs/bin/bundle exec jekyll serve --source . --trace --port 4001
+
+stop-serve:
+	@lsof -tiTCP:4000 -sTCP:LISTEN | xargs kill -9 2>/dev/null || true
+	@lsof -tiTCP:4001 -sTCP:LISTEN | xargs kill -9 2>/dev/null || true
 
 build-site: schedule-fall bundle-install
 	./envs/bin/bundle exec jekyll build --source . --trace

@@ -36,7 +36,7 @@ The capstone course has three major goals:
 
 Students should use the schedule to plan for the semester. Links will appear as instructors add assignments for the semester. Please review this page regularly for updates.
 
-Select the [Course Guide](./Guide) in the menu above to navigate to learn more about the course. This guide includes the syllabus as well as general policies and procedures that students must follow.  
+Select the [Course Guide](./Guide/00-index) in the menu above to navigate to learn more about the course. This guide includes the syllabus as well as general policies and procedures that students must follow.  
 
 The Table of Contents is provided to help student navigate individual pages. 
 
