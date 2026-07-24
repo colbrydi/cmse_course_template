@@ -18,25 +18,18 @@ Core design goals:
 3. Generate schedule data for the semester:
 
 ```bash
-make semester-fall
+make schedule-fall
 ```
 
 or
 
 ```bash
-make semester-spring
-```
-
-You can also choose a semester explicitly:
-
-```bash
-make semester SEMESTER=fall
-make semester SEMESTER=spring
+make schedule-spring
 ```
 
 ## What The Generator Produces
 
-Running `make semester...` executes `scripts/update_schedule.py` and writes:
+Running `make schedule-...` executes `scripts/update_schedule.py` and writes:
 
 - `_data/schedule.yml`
 - `_data/schedule_warnings.yml`
@@ -68,6 +61,8 @@ Serve locally:
 make serve
 ```
 
+If you are testing before a GitHub remote is configured, use the local-safe serve target from the Makefile.
+
 Build static site output into `_site/`:
 
 ```bash
@@ -80,7 +75,7 @@ Use `main` as source branch and publish from the repository root.
 
 Recommended flow:
 
-1. Run `make semester-fall` or `make semester-spring` when calendar/schedule content changes.
+1. Run `make schedule-fall` or `make schedule-spring` when calendar/schedule content changes.
 2. Commit source files plus generated `_data/schedule.yml` and `_data/schedule_warnings.yml`.
 3. In GitHub Pages settings, set source to `main` / `root`.
 4. Let GitHub Pages render Jekyll automatically.

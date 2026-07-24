@@ -1,6 +1,6 @@
 theme: jekyll-theme-minimal
-title: "CMSE 495"
-description: "Michigan State University Data Science Capstone." 
+title: "Course Website"
+description: "Reusable schedule-first course website template."
 logo: /assets/img/MSU.png
 baseurl: /cmse495-FS26
 permalink: /:year/:month/:day/:title

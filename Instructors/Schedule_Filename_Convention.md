@@ -16,6 +16,33 @@ The actual calendar date for each numbered course day is computed from the selec
 
 The website should show real dates, not the course-day number.
 
+## Instructor Setup Checklist
+
+Use this checklist when starting a new course site from this template.
+
+1. Update basic site identity in `/_config.yml`.
+	- Set `title`, `description`, and `baseurl` for your repository.
+	- Confirm the logo path points to your course or institution image.
+2. Choose the semester calendar in `config/`.
+	- Update `config/fall_calendar.yml` or `config/spring_calendar.yml`.
+	- Verify first day, last day, meeting days, and breaks/cancelled classes.
+3. Update course content map in `config/topics_per_day.yml`.
+	- Keep day IDs (`Day01`, `Day02`, ...) aligned with your intended pacing.
+4. Add schedule pages in `Schedule/` using the filename rules in this document.
+	- Start with core `NN-class-*` pages.
+	- Add due dates/checkpoints using `NN-same-*`, `NN-plus-*`, and `NN-next-*` as needed.
+5. Add reference/policy pages under `Guide/` (and other top-level reference folders if needed).
+	- Keep an entry page named `00-*.md` in each reference folder.
+	- Use `layout: guide` for reference pages.
+6. Generate schedule data.
+	- Run the schedule generation command from the Makefile for your semester.
+	- Confirm `_data/schedule.yml` and `_data/schedule_warnings.yml` update.
+7. Review and clean warnings.
+	- Fix filename mismatches or missing anchors reported in `_data/schedule_warnings.yml`.
+8. Publish workflow check.
+	- Verify local serve/build works.
+	- Commit source files plus generated `_data/schedule.yml` before publishing.
+
 ## What Goes in `Schedule`
 
 Use the `Schedule` folder for course content that should stay attached to the instructional pacing of the course.

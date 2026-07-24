@@ -552,7 +552,7 @@
       <a href="{{ '/' | relative_url }}" aria-label="Go to the schedule home page">
         <img src="{{ '/assets/img/MSU.png' | relative_url }}" alt="Michigan State University logo">
       </a>
-      <div class="site-title">CMSE495 Data Science Capstone</div>
+      <div class="site-title">{{ site.title | default: "Course Website" }}</div>
     </div>
 
     <div class="nav-right">
