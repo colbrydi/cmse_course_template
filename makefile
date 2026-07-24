@@ -67,3 +67,6 @@ build-site: schedule-fall bundle-install
 
 clean-schedule-data:
 	rm -f _data/schedule.yml _data/schedule_warnings.yml
+
+serve-local:
+	PAGES_REPO_NWO=local/test-repo make serve
