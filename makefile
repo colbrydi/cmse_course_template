@@ -1,4 +1,4 @@
-.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring serve serve-fall serve-spring serve-4001 stop-serve build-site clean-schedule-data
+.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring calendar-ics serve serve-fall serve-spring serve-4001 stop-serve build-site clean-schedule-data
 
 all: serve-fall
 
@@ -13,6 +13,7 @@ help:
 	@echo "  make bundle-install"
 	@echo "  make schedule-fall"
 	@echo "  make schedule-spring"
+	@echo "  make calendar-ics"
 	@echo "  make serve"
 	@echo "  make serve-spring"
 	@echo "  make serve-4001"
@@ -38,6 +39,10 @@ schedule-fall:
 		--schedule-dir Schedule \
 		--schedule-data _data/schedule.yml \
 		--schedule-warnings _data/schedule_warnings.yml
+	./envs/bin/python scripts/generate_course_calendar.py \
+		--schedule-data _data/schedule.yml \
+		--config _config.yml \
+		--output course_calendar.ics
 
 schedule-spring:
 	./envs/bin/python scripts/update_schedule.py \
@@ -46,6 +51,16 @@ schedule-spring:
 		--schedule-dir Schedule \
 		--schedule-data _data/schedule.yml \
 		--schedule-warnings _data/schedule_warnings.yml
+	./envs/bin/python scripts/generate_course_calendar.py \
+		--schedule-data _data/schedule.yml \
+		--config _config.yml \
+		--output course_calendar.ics
+
+calendar-ics:
+	./envs/bin/python scripts/generate_course_calendar.py \
+		--schedule-data _data/schedule.yml \
+		--config _config.yml \
+		--output course_calendar.ics
 
 serve: serve-fall
 
@@ -66,7 +81,7 @@ build-site: schedule-fall bundle-install
 	./envs/bin/bundle exec jekyll build --source . --trace
 
 clean-schedule-data:
-	rm -f _data/schedule.yml _data/schedule_warnings.yml
+	rm -f _data/schedule.yml _data/schedule_warnings.yml course_calendar.ics
 
 serve-local:
 	PAGES_REPO_NWO=local/test-repo make serve

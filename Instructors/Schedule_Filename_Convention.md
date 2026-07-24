@@ -36,12 +36,26 @@ Use this checklist when starting a new course site from this template.
 	- Use `layout: guide` for reference pages.
 6. Generate schedule data.
 	- Run the schedule generation command from the Makefile for your semester.
-	- Confirm `_data/schedule.yml` and `_data/schedule_warnings.yml` update.
+	- Confirm `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics` update.
 7. Review and clean warnings.
 	- Fix filename mismatches or missing anchors reported in `_data/schedule_warnings.yml`.
 8. Publish workflow check.
 	- Verify local serve/build works.
 	- Commit source files plus generated `_data/schedule.yml` before publishing.
+
+## Calendar Subscription File
+
+This template generates `course_calendar.ics` from `_data/schedule.yml`.
+
+- The ICS includes schedule titles and dates for class and non-class events by default.
+- Class events are exported as timed events (default 12:30-13:40).
+- Non-class events are exported as all-day entries.
+- When a schedule item has a URL, that link is included in the event.
+
+Common commands:
+
+- Regenerate both schedule data and ICS: `make schedule-fall` or `make schedule-spring`
+- Regenerate only ICS from existing schedule data: `make calendar-ics`
 
 ## What Goes in `Schedule`
 

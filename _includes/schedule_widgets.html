@@ -14,7 +14,7 @@
   <h1>{{ include.calendar_title | default: "Course Calendar Draft" }}</h1>
   <p>{{ include.calendar_description | default: "This is a preview page built from the schedule source file." }} Events are shown at {{ include.class_time | default: "12:30 PM - 1:40 PM" }} in {{ include.class_location | default: "TBD" }}.</p>
 
-  {% assign subscription_path = include.subscription_path | default: "/CMSE495_Subscribe.ics" %}
+  {% assign subscription_path = include.subscription_path | default: "/course_calendar.ics" %}
   <p>
     Calendar subscription URL:
     <a href="{{ subscription_path | relative_url }}">{{ subscription_path | relative_url }}</a>

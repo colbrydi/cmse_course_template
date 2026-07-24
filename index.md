@@ -31,7 +31,7 @@ Select the [Course Guide](./Guide/00-index) in the menu above to navigate to lea
 
 The Table of Contents is provided to help student navigate individual pages. 
 
-{% include schedule_widgets.html part="calendar" calendar_title="Course Calendar Draft" class_time="12:30 PM - 1:40 PM" class_location="EGR 1145" subscription_path="/CMSE495_Subscribe.ics" %}
+{% include schedule_widgets.html part="calendar" calendar_title="Course Calendar Draft" class_time="12:30 PM - 1:40 PM" class_location="EGR 1145" subscription_path="/course_calendar.ics" %}
 {% include schedule_widgets.html part="assets" class_time="12:30 PM - 1:40 PM" class_location="EGR 1145" %}
 
 <!-- TOC_START -->
