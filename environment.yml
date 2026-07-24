@@ -1,0 +1,14 @@
+name: cmse-course-template
+channels:
+  - conda-forge
+dependencies:
+  - make
+  - python=3.11
+  - pyyaml
+  - jupyterlab
+  - ruby=3.2
+  - bundler
+  - cmake
+  - compilers
+  - imagemagick
+prefix: ./envs

@@ -1,0 +1,10 @@
+name: /Users/colbrydi/REPOS/VIP_website/envs
+channels:
+  - conda-forge
+dependencies:
+  - cmake
+  - compilers
+  - make
+  - ruby=3.2
+  - imagemagick
+prefix: /Users/colbrydi/REPOS/VIP_website/envs

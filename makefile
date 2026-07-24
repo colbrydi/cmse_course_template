@@ -1,0 +1,60 @@
+.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring serve serve-fall serve-spring build-site clean-schedule-data
+
+all: serve-fall
+
+help:
+	@echo "Simple workflow"
+	@echo "  1) make envs"
+	@echo "  2) conda activate ./envs"
+	@echo "  3) make serve"
+	@echo ""
+	@echo "Commands"
+	@echo "  make envs"
+	@echo "  make bundle-install"
+	@echo "  make schedule-fall"
+	@echo "  make schedule-spring"
+	@echo "  make serve"
+	@echo "  make serve-spring"
+	@echo "  make build-site"
+
+envs:
+	@if [ -d "./envs" ]; then \
+		conda env update --prefix ./envs --file environment.yml --prune; \
+	else \
+		conda env create --prefix ./envs --file environment.yml; \
+	fi
+
+bundle-install:
+	./envs/bin/bundle install
+
+schedule: schedule-fall
+
+schedule-fall:
+	./envs/bin/python scripts/update_schedule.py \
+		--calendar config/fall_calendar.yml \
+		--content config/topics_per_day.yml \
+		--schedule-dir Schedule \
+		--schedule-data _data/schedule.yml \
+		--schedule-warnings _data/schedule_warnings.yml
+
+schedule-spring:
+	./envs/bin/python scripts/update_schedule.py \
+		--calendar config/spring_calendar.yml \
+		--content config/topics_per_day.yml \
+		--schedule-dir Schedule \
+		--schedule-data _data/schedule.yml \
+		--schedule-warnings _data/schedule_warnings.yml
+
+serve: serve-fall
+
+serve-fall: schedule-fall bundle-install
+	./envs/bin/bundle exec jekyll serve --source . --trace
+
+serve-spring: schedule-spring bundle-install
+	./envs/bin/bundle exec jekyll serve --source . --trace
+
+build-site: schedule-fall bundle-install
+	./envs/bin/bundle exec jekyll build --source . --trace
+
+clean-schedule-data:
+	rm -f _data/schedule.yml _data/schedule_warnings.yml

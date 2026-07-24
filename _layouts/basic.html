@@ -1,0 +1,31 @@
+---
+layout: default
+---
+{% assign schedule_page = site.pages | where: "is_schedule", true | first %}
+{% assign parts = content | split:'<!-- TOC_START -->' %}
+
+<div class="layout">
+	<aside class="left">
+		{% if page.left_image %}
+			<div class="left-image">
+				<img src="{{ page.left_image | relative_url }}" alt="{{ page.left_image_alt | default: page.title }}">
+			</div>
+		{% endif %}
+
+	</aside>
+
+	<main id="content" tabindex="-1">
+		{{ parts[0] }}
+	</main>
+
+	<aside class="right">
+		{% if parts.size > 1 %}
+			{% assign toc_parts = parts[1] | split:'<!-- TOC_END -->' %}
+			{% if toc_parts[0] != nil and toc_parts[0] != "" %}
+				<nav aria-label="On this page">
+					{{ toc_parts[0] }}
+				</nav>
+			{% endif %}
+		{% endif %}
+	</aside>
+</div>
