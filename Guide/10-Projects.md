@@ -40,21 +40,4 @@ Use tools to accelerate work, but only submit work you understand and can explai
 
 Progress comes from iterative exploration, clear communication, and adjustment over time.
 
-<!-- TOC_START -->
-<div class="page-toc">
-<h2>On this page</h2>
 
-<details>
-<summary>Project Expectations Guide</summary>
-<ul>
-
-<li><a href="#core-principle">Core Principle</a></li>
-<li><a href="#what-to-expect">What To Expect</a></li>
-<li><a href="#how-teams-make-progress">How Teams Make Progress</a></li>
-<li><a href="#milestones-are-communication-tools">Milestones Are Communication Tools</a></li>
-<li><a href="#tools-and-ai">Tools and AI</a></li>
-<li><a href="#bottom-line">Bottom Line</a></li>
-</ul>
-</details>
-</div>
-<!-- TOC_END -->

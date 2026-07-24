@@ -164,41 +164,4 @@ Professionalism should not be confused with extroversion. Some students demonstr
 
 Professionalism is a skill that can be developed through practice and feedback. The goal is not to judge personality, but to help students build habits that contribute to success in project-based environments and future professional settings.
 
-<!-- TOC_START -->
-<div class="page-toc">
-<h2>On this page</h2>
 
-<details>
-<summary>Glossary</summary>
-<ul>
-
-<li><a href="#data-and-analysis">Data and Analysis</a></li>
-<ul>
-<li><a href="#data-bibliography">Data Bibliography</a></li>
-<li><a href="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a></li>
-<li><a href="#schema-data-dictionary">Schema (Data Dictionary)</a></li>
-<li><a href="#structured-and-unstructured-data">Structured and Unstructured Data</a></li>
-<li><a href="#automated-machine-learning-automl">Automated Machine Learning (AutoML)</a></li>
-</ul>
-<li><a href="#project-management">Project Management</a></li>
-<ul>
-<li><a href="#minimum-viable-product-mvp">Minimum Viable Product (MVP)</a></li>
-<li><a href="#open-loops">Open Loops</a></li>
-<li><a href="#next-step">Next Step</a></li>
-<li><a href="#selection-matrix">Selection Matrix</a></li>
-<li><a href="#success-criteria">Success Criteria</a></li>
-</ul>
-<li><a href="#software-development">Software Development</a></li>
-<ul>
-<li><a href="#reproducibility">Reproducibility</a></li>
-<li><a href="#robustness">Robustness</a></li>
-<li><a href="#application-programming-interface-api">Application Programming Interface (API)</a></li>
-</ul>
-<li><a href="#professional-practice">Professional Practice</a></li>
-<ul>
-<li><a href="#professionalism">Professionalism</a></li>
-</ul>
-</ul>
-</details>
-</div>
-<!-- TOC_END -->

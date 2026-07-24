@@ -1,0 +1,73 @@
+<nav class="auto-toc" aria-label="On this page">
+  <h2>On this page</h2>
+  <details class="auto-toc-details" open>
+    <summary id="auto-toc-summary">Contents</summary>
+    <ul class="auto-toc-list" id="auto-toc-list"></ul>
+  </details>
+</nav>
+
+<script>
+  (function () {
+    const tocList = document.getElementById("auto-toc-list");
+    const tocSummary = document.getElementById("auto-toc-summary");
+    const content = document.getElementById("content");
+
+    if (!tocList || !content) {
+      return;
+    }
+
+    const h1 = content.querySelector("h1");
+    const headings = Array.from(content.querySelectorAll("h2, h3"));
+
+    if (!h1 && headings.length === 0) {
+      const tocContainer = tocList.closest(".auto-toc");
+      if (tocContainer) {
+        tocContainer.hidden = true;
+      }
+      return;
+    }
+
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .trim()
+        .replace(/[^a-z0-9\s-]/g, "")
+        .replace(/\s+/g, "-")
+        .replace(/-+/g, "-");
+    }
+
+    function addHeading(heading, isSub) {
+      const text = (heading.textContent || "").trim();
+      if (!text) {
+        return;
+      }
+
+      if (!heading.id) {
+        heading.id = slugify(text);
+      }
+
+      const li = document.createElement("li");
+      if (isSub) {
+        li.className = "auto-toc-sub";
+      }
+
+      const link = document.createElement("a");
+      link.href = `#${heading.id}`;
+      link.textContent = text;
+      li.appendChild(link);
+      tocList.appendChild(li);
+    }
+
+    if (h1) {
+      const topText = (h1.textContent || "").trim();
+      if (tocSummary && topText) {
+        tocSummary.textContent = topText;
+      }
+      addHeading(h1, false);
+    }
+
+    headings.forEach((heading) => {
+      addHeading(heading, heading.tagName.toLowerCase() === "h3");
+    });
+  })();
+</script>

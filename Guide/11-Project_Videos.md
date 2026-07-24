@@ -123,32 +123,4 @@ Build one story throughout the semester.
 
 Plan early, record often, revise intentionally, and focus on communicating your project's value to a general audience. A successful final video should clearly explain what your team attempted, what your team learned, what your team accomplished, and why the work matters.
 
-<!-- TOC_START -->
-<div class="page-toc">
-<h2>On this page</h2>
 
-<details>
-<summary>Project Video Assignment</summary>
-<ul>
-
-<li><a href="#why-videos">Why Videos?</a></li>
-<li><a href="#iterative-development">Iterative Development</a></li>
-<li><a href="#storyboarding">Storyboarding</a></li>
-<li><a href="#the-first-storyboard">The First Storyboard</a></li>
-<li><a href="#video-milestones">Video Milestones</a></li>
-<ul>
-<li><a href="#introduction">Introduction</a></li>
-<li><a href="#mvp-demo">MVP Demo</a></li>
-<li><a href="#final-project-video">Final Project Video</a></li>
-</ul>
-<li><a href="#reviewing-existing-versions">Reviewing Existing Versions</a></li>
-<li><a href="#quality-expectations">Quality Expectations</a></li>
-<li><a href="#using-ai-and-media-tools">Using AI and Media Tools</a></li>
-<li><a href="#recording-and-editing">Recording and Editing</a></li>
-<li><a href="#sharing-your-video">Sharing Your Video</a></li>
-<li><a href="#recommended-tools">Recommended Tools</a></li>
-<li><a href="#bottom-line">Bottom Line</a></li>
-</ul>
-</details>
-</div>
-<!-- TOC_END -->

@@ -31,19 +31,3 @@ Reasonable decisions made in good faith are generally viewed more favorably than
 The goal of this course is not simply to complete assignments. The goal is to build a successful project while developing professional skills in communication, teamwork, project management, and technical practice.
 
 Use this guide as a resource when you need it and contribute improvements when you find opportunities to make it better.
-
-<!-- TOC_START -->
-<div class="page-toc">
-<h2>On this page</h2>
-
-<details>
-<summary>Guide Overview</summary>
-<ul>
-
-<li><a href="#how-to-use-this-guide">How to Use This Guide</a></li>
-<li><a href="#a-note-about-professional-judgment">A Note About Professional Judgment</a></li>
-<li><a href="#bottom-line">Bottom Line</a></li>
-</ul>
-</details>
-</div>
-<!-- TOC_END -->

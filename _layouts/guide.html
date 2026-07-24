@@ -72,13 +72,18 @@ layout: default
   </main>
 
   <aside class="right">
+    {% assign manual_toc = "" %}
     {% if parts.size > 1 %}
       {% assign toc_parts = parts[1] | split:'<!-- TOC_END -->' %}
-      {% if toc_parts[0] != nil and toc_parts[0] != "" %}
-        <nav aria-label="On this page">
-          {{ toc_parts[0] | replace: '<details>', '<details open>' }}
-        </nav>
-      {% endif %}
+      {% assign manual_toc = toc_parts[0] | strip %}
+    {% endif %}
+
+    {% if manual_toc != "" %}
+      <nav aria-label="On this page">
+        {{ manual_toc | replace: '<details>', '<details open>' }}
+      </nav>
+    {% else %}
+      {% include auto_toc.html %}
     {% endif %}
   </aside>
 </div>
