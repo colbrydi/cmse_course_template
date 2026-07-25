@@ -8,8 +8,6 @@ mode: "schedule"
 
 {% include schedule_widgets.html part="progress" %}
 
-
-<<<<<<< HEAD
 **⚠️TODO:** This is example homepage content. Replace this page with your own course introduction.
 
 Suggested first edits:
