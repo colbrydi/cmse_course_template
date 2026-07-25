@@ -5,6 +5,8 @@ mode: "schedule"
 ---
 # Project Preferences and Team Formation Inputs
 
+**⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
+
 ## Session Goals
 
 - Capture student interests and constraints.

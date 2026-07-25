@@ -6,6 +6,8 @@ mode: "guide"
 ---
 # Project Video Assignment
 
+**⚠️TODO:** This is example video-assignment content. Remove this file and replace it with your own video or presentation policy.
+
 Throughout the semester, your team will build a single project video that tells the story of your project.
 
 Rather than creating the final video all at once, the video is developed through a series of milestones that include planning, recording, review, and revision. Each milestone contributes to the final product.

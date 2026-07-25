@@ -41,7 +41,22 @@ Use this checklist when starting a new course site from this template.
 	- Fix filename mismatches or missing anchors reported in `_data/schedule_warnings.yml`.
 8. Publish workflow check.
 	- Verify local serve/build works.
-	- Commit source files plus generated `_data/schedule.yml` before publishing.
+	- Commit source files plus generated `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics` before publishing.
+
+## Example Content Replacement Policy
+
+Pages in `Guide/`, `Schedule/`, and `index.md` that start with `**⚠️TODO:**` are placeholder examples.
+
+- Instructors should either delete these files or replace their full content.
+- Keep filename conventions in `Schedule/` if you want generated schedule links to keep working.
+- For reference folders like `Guide/`, keep one `00-*.md` entry page per folder for menu routing.
+
+Recommended replacement order:
+
+1. Replace `index.md` with a real course landing page.
+2. Replace `Guide/00-index.md` and `Guide/01-Syllabus.md`.
+3. Replace all `Schedule/NN-class-*.md` files used this semester.
+4. Re-run `make schedule-fall` or `make schedule-spring`.
 
 ## Calendar Subscription File
 
@@ -249,19 +264,17 @@ This keeps instructional pacing in the `Schedule` folder while allowing semester
 
 ## Repository and Publishing Structure Recommendation
 
-For simplicity, keep a single source branch and publish from the `docs/` folder:
+For simplicity, keep a single source branch and publish from repository root:
 
 1. Authoring source remains at repository root.
-2. Build output is generated into `docs/`.
-3. GitHub Pages is configured to publish from `main` branch, `docs/` folder.
+2. Generated schedule files remain in `_data/` and `course_calendar.ics`.
+3. GitHub Pages is configured to publish from `main` branch, `root`.
 
 Why this is the default recommendation:
 
-- It keeps source and published artifacts separated.
-- It avoids additional branch management overhead.
-- It stays transparent for instructors who are not Git experts.
-
-Alternative publishing models (separate branch or ghp-import) can be added later if the project needs stricter separation, but `main + docs/` is usually the best balance of portability and simplicity for course teams.
+- It keeps workflow simple for instructors using GitHub web edits.
+- It avoids extra build-output folders and branch juggling.
+- It aligns with this template's schedule-first generation flow.
 
 ## Notes
 

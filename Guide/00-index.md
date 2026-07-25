@@ -6,6 +6,8 @@ mode: "guide"
 ---
 # Guide Overview
 
+**⚠️TODO:** This is example Guide content. Remove this file and replace it with your own course guide overview.
+
 CMSE 495 is a team-based, project-driven course. This guide serves as a reference for how the course operates throughout the semester.
 
 You are not expected to read every page at once. Instead, use the guide when you need clarification, structure, or examples.

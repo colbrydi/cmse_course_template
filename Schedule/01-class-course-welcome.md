@@ -5,6 +5,8 @@ mode: "schedule"
 ---
 # Course Welcome and Orientation
 
+**⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
+
 ## Session Goals
 
 - Understand course purpose, structure, and outcomes.

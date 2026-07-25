@@ -6,6 +6,8 @@ mode: "guide"
 ---
 # Project Expectations Guide
 
+**⚠️TODO:** This is example project-guidance content. Remove this file and replace it with your own project expectations.
+
 ## Core Principle
 
 Projects are not pre-defined problems with known answers. Your role is to help define, refine, and solve the problem over time.

@@ -5,6 +5,8 @@ mode: "schedule"
 ---
 # Project Review Workshop
 
+**⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
+
 ## Session Goals
 
 - Evaluate project options with evidence.

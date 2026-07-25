@@ -6,13 +6,23 @@ layout: default
 {% assign prev_item = nil %}
 {% assign next_item = nil %}
 {% assign found_current = false %}
+{% assign page_url_norm = page.url | replace: '.html', '' | replace: '/index', '' %}
+{% assign page_url_norm_slash = page_url_norm | append: '/' %}
 {% for item in schedule_items %}
 	{% if item.url and item.url != "" %}
-		{% if item.url == page.url %}
+		{% assign item_url_norm = item.url | replace: '.html', '' | replace: '/index', '' %}
+		{% assign item_url_norm_slash = item_url_norm | append: '/' %}
+		{% assign item_matches_current = false %}
+		{% if item.url == page.url or item_url_norm == page_url_norm or item_url_norm == page_url_norm_slash or item_url_norm_slash == page_url_norm %}
+			{% assign item_matches_current = true %}
+		{% endif %}
+
+		{% if item_matches_current %}
 			{% assign found_current = true %}
 		{% elsif found_current and next_item == nil %}
 			{% assign next_item = item %}
-		{% else %}
+			{% break %}
+		{% elsif found_current == false %}
 			{% assign prev_item = item %}
 		{% endif %}
 	{% endif %}
@@ -27,17 +37,29 @@ layout: default
 					{% assign current_week = item.week_start %}
 					<h2>Week of {{ item.week_start | date: "%B %-d" }}</h2>
 				{% endif %}
+				{% assign item_url_norm = item.url | replace: '.html', '' | replace: '/index', '' %}
+				{% assign item_url_norm_slash = item_url_norm | append: '/' %}
+				{% assign item_is_active = false %}
+				{% if item.url == page.url or item_url_norm == page_url_norm or item_url_norm == page_url_norm_slash or item_url_norm_slash == page_url_norm %}
+					{% assign item_is_active = true %}
+				{% endif %}
 				<div class='sched-item'>
 					<div class='sched-date-line'><time datetime='{{ item.date }}'>{{ item.date | date: "%a %m/%d" }}</time></div>
-					<div class='sched-title-line'>{% if item.url and item.url != "" %}<a href="{{ item.url | relative_url }}" {% if item.url == page.url %}class="active" aria-current="page"{% endif %}>{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</div>
+					<div class='sched-title-line'>{% if item.url and item.url != "" %}<a href="{{ item.url | relative_url }}" {% if item_is_active %}class="active" aria-current="page"{% endif %}>{{ item.title }}</a>{% else %}{{ item.title }}{% endif %}</div>
 				</div>
 			{% endfor %}
 		{% elsif schedule_pages and schedule_pages.size > 0 %}
 			<h2>Assignments</h2>
 			<ul>
 				{% for item in schedule_pages %}
+					{% assign item_url_norm = item.url | replace: '.html', '' | replace: '/index', '' %}
+					{% assign item_url_norm_slash = item_url_norm | append: '/' %}
+					{% assign item_is_active = false %}
+					{% if item.url == page.url or item_url_norm == page_url_norm or item_url_norm == page_url_norm_slash or item_url_norm_slash == page_url_norm %}
+						{% assign item_is_active = true %}
+					{% endif %}
 					<li>
-						<a href="{{ item.url | relative_url }}" {% if item.url == page.url %}class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
+						<a href="{{ item.url | relative_url }}" {% if item_is_active %}class="active" aria-current="page"{% endif %}>{{ item.title }}</a>
 					</li>
 				{% endfor %}
 			</ul>

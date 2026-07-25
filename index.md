@@ -9,7 +9,15 @@ mode: "schedule"
 {% include schedule_widgets.html part="progress" %}
 
 
-**⚠️TODO:** This is the course landing page. Add a description of the course here. 
+**⚠️TODO:** This is example homepage content. Replace this page with your own course introduction.
+
+Suggested first edits:
+
+1. Update this page title and course description for your class.
+2. Update class time/location in the calendar include parameters below.
+3. Keep or remove the progress bar and calendar widgets as needed.
+4. Review Guide and Schedule example files and replace them with your content.
+5. Re-run `make schedule-fall` or `make schedule-spring` after content changes.
 
 ## Navigating This Website
 

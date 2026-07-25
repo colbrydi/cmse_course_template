@@ -6,6 +6,8 @@ mode: "guide"
 ---
 # Glossary
 
+**⚠️TODO:** This is example glossary content. Remove this file and replace it with your own glossary or policy reference page.
+
 The following concepts appear throughout the course and may be referenced in milestone assignments.
 
 ## Data and Analysis
@@ -146,7 +148,6 @@ Students sometimes assume that "develop an API" means creating a web service. In
 
 A well-designed software project often begins with a package API that contains the project's core functionality. If remote access is needed later, a Web API can be built on top of the package API.
 
-![Application Logic --> Package API --> Web API --> External Users or Applications](../assets/img/API.png)
 
 This approach avoids duplicating code and allows the same functionality to be used both locally and over a network.
 

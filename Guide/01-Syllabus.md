@@ -6,6 +6,8 @@ mode: "guide"
 ---
 # Syllabus
 
+**⚠️TODO:** This is example syllabus content. Remove this file and replace it with your own syllabus.
+
 CMSE 495- Data Science Capstone
 
 ## Course Description

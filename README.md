@@ -2,6 +2,27 @@
 
 This repository is a semester-portable, schedule-first course website template.
 
+## First-Time Instructor Checklist
+
+1. Update site settings in `_config.yml`.
+	- Set `title`, `description`, and `baseurl`.
+	- Confirm logo path.
+2. Replace example content pages.
+	- Update `index.md`.
+	- Replace pages in `Guide/`.
+	- Replace pages in `Schedule/`.
+	- Any page marked with `**⚠️TODO:**` is intended to be replaced.
+3. Update semester dates.
+	- Edit `config/fall_calendar.yml` or `config/spring_calendar.yml`.
+4. Update day-by-day course mapping.
+	- Edit `config/topics_per_day.yml`.
+5. Generate schedule + calendar data.
+	- Run `make schedule-fall` or `make schedule-spring`.
+6. Review generated files before publishing.
+	- `_data/schedule.yml`
+	- `_data/schedule_warnings.yml`
+	- `course_calendar.ics`
+
 Core design goals:
 
 - Calendar-driven class timeline from `config/[semester]_calendar.yml`
@@ -33,6 +54,7 @@ Running `make schedule-...` executes `scripts/update_schedule.py` and writes:
 
 - `_data/schedule.yml`
 - `_data/schedule_warnings.yml`
+- `course_calendar.ics`
 
 Behavior:
 
@@ -40,6 +62,7 @@ Behavior:
 - If a matching class file is missing, the class appears as `TBD` with no link.
 - Relative schedule items (same day, plus offset, next weekday) are added from filename parsing.
 - Non-class calendar events (holidays, breaks, closures) are merged into the same schedule timeline.
+- The generated `course_calendar.ics` includes schedule dates and links for calendar subscription.
 
 ## Local Development
 
@@ -63,6 +86,10 @@ make serve
 
 If you are testing before a GitHub remote is configured, use the local-safe serve target from the Makefile.
 
+```bash
+make serve-local
+```
+
 Build static site output into `_site/`:
 
 ```bash
@@ -76,7 +103,7 @@ Use `main` as source branch and publish from the repository root.
 Recommended flow:
 
 1. Run `make schedule-fall` or `make schedule-spring` when calendar/schedule content changes.
-2. Commit source files plus generated `_data/schedule.yml` and `_data/schedule_warnings.yml`.
+2. Commit source files plus generated `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics`.
 3. In GitHub Pages settings, set source to `main` / `root`.
 4. Let GitHub Pages render Jekyll automatically.
 
@@ -108,4 +135,10 @@ This keeps editing simple (including GitHub web edits) and avoids a local pre-bu
 - `pyyaml` and `jupyterlab` are installed through the conda environment
 - Ruby and Bundler are installed through the conda environment
 - Jekyll is installed via `bundle install` using the `github-pages` gem stack in `Gemfile`
+
+## Notes for Template Authors
+
+- Manual `<!-- TOC_START -->` blocks are no longer required.
+- The right-side TOC is generated automatically from page headings.
+- You can still keep manual TOC sections if desired, but the default workflow is automatic.
 
