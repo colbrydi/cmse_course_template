@@ -14,11 +14,9 @@ This repository is a semester-portable, schedule-first course website template.
 	- Any page marked with `**⚠️TODO:**` is intended to be replaced.
 3. Update semester dates.
 	- Edit `config/fall_calendar.yml` or `config/spring_calendar.yml`.
-4. Update day-by-day course mapping.
-	- Edit `config/topics_per_day.yml`.
-5. Generate schedule + calendar data.
+4. Generate schedule + calendar data.
 	- Run `make schedule-fall` or `make schedule-spring`.
-6. Review generated files before publishing.
+5. Review generated files before publishing.
 	- `_data/schedule.yml`
 	- `_data/schedule_warnings.yml`
 	- `course_calendar.ics`

@@ -35,7 +35,6 @@ schedule: schedule-fall
 schedule-fall:
 	./envs/bin/python scripts/update_schedule.py \
 		--calendar config/fall_calendar.yml \
-		--content config/topics_per_day.yml \
 		--schedule-dir Schedule \
 		--schedule-data _data/schedule.yml \
 		--schedule-warnings _data/schedule_warnings.yml
@@ -47,7 +46,6 @@ schedule-fall:
 schedule-spring:
 	./envs/bin/python scripts/update_schedule.py \
 		--calendar config/spring_calendar.yml \
-		--content config/topics_per_day.yml \
 		--schedule-dir Schedule \
 		--schedule-data _data/schedule.yml \
 		--schedule-warnings _data/schedule_warnings.yml
