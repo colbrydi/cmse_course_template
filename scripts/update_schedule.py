@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import shutil
 from dataclasses import dataclass
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -318,12 +319,74 @@ class ScheduleUpdater:
         events.sort(key=lambda entry: (str(entry.get("date", "")), str(entry.get("title", ""))))
         return events, warnings
 
+    def update_schedule_page_dates(self, schedule_dir: Path) -> None:
+        parsed_items, _ = parse_schedule_directory(schedule_dir)
+        class_dates = self._meeting_dates()
+
+        for item in parsed_items:
+            target_date = self._resolve_target_date(item, class_dates)
+            file_path = item.file_path
+            text = file_path.read_text(encoding="utf-8")
+            lines = text.splitlines()
+
+            if not lines:
+                continue
+
+            target_date_text = target_date.strftime("%Y-%m-%d")
+
+            if lines[0].strip() != "---":
+                text = "---\nlayout: schedule\ndate: " + target_date_text + "\n---\n\n" + text
+                file_path.write_text(text, encoding="utf-8")
+                continue
+
+            end_index = None
+            for index in range(1, len(lines)):
+                if lines[index].strip() == "---":
+                    end_index = index
+                    break
+
+            if end_index is None:
+                continue
+
+            frontmatter_lines = lines[1:end_index]
+            body_lines = lines[end_index + 1 :]
+            frontmatter_text = "\n".join(frontmatter_lines)
+            frontmatter_data = yaml.safe_load(frontmatter_text) or {}
+            if not isinstance(frontmatter_data, dict):
+                frontmatter_data = {}
+
+            existing_date = frontmatter_data.get("date")
+            if existing_date is not None and str(existing_date).strip() == target_date_text:
+                continue
+
+            frontmatter_data["date"] = target_date_text
+            new_frontmatter = yaml.safe_dump(frontmatter_data, sort_keys=False, allow_unicode=False).rstrip()
+            body_text = "\n".join(body_lines)
+            updated_text = "---\n" + new_frontmatter + "\n---\n"
+            if body_text:
+                updated_text += "\n" + body_text
+            file_path.write_text(updated_text, encoding="utf-8")
+
+    def _resolve_target_date(self, item: ParsedScheduleFilename, class_dates: list[datetime]) -> datetime:
+        anchor_date = class_dates[item.anchor_day - 1]
+        if item.relation == "same":
+            return anchor_date
+        if item.relation == "plus":
+            return anchor_date + timedelta(days=int(item.offset_days or 0))
+        if item.relation == "next":
+            return self._next_weekday_after(anchor_date, item.weekday)
+        if item.relation == "class":
+            return anchor_date
+        raise ValueError(f"Unsupported schedule relation: {item.relation}")
+
     def update_schedule(
         self,
         schedule_dir: str = "Schedule",
         schedule_data_path: str = "_data/schedule.yml",
         schedule_warnings_path: str = "_data/schedule_warnings.yml",
+        rendered_site_dir: str | None = None,
     ) -> None:
+        self.update_schedule_page_dates(Path(schedule_dir))
         events, warnings = self.build_schedule_events(Path(schedule_dir))
 
         schedule_data_file = Path(schedule_data_path)
@@ -340,6 +403,30 @@ class ScheduleUpdater:
             yaml.safe_dump(warning_rows, sort_keys=False, allow_unicode=False),
             encoding="utf-8",
         )
+
+        if rendered_site_dir:
+            output_dir = Path(rendered_site_dir)
+            if output_dir.exists():
+                shutil.rmtree(output_dir)
+            output_dir.mkdir(parents=True, exist_ok=True)
+
+            shutil.copytree(
+                Path.cwd(),
+                output_dir,
+                ignore=shutil.ignore_patterns(
+                    ".git",
+                    ".venv",
+                    "_site",
+                    ".jekyll-cache",
+                    "envs",
+                    ".ipynb_checkpoints",
+                    "__pycache__",
+                    ".vscode",
+                    ".githooks",
+                ),
+                dirs_exist_ok=True,
+            )
+            print(f"Rendered schedule pages into {output_dir}.")
 
 
 def main() -> None:
@@ -360,6 +447,11 @@ def main() -> None:
         default="_data/schedule_warnings.yml",
         help="Path to generated warnings YAML for filename/schedule mismatches",
     )
+    parser.add_argument(
+        "--rendered-site-dir",
+        default=None,
+        help="Optional directory to receive rendered schedule markdown pages for local site builds",
+    )
 
     args = parser.parse_args()
 
@@ -368,6 +460,7 @@ def main() -> None:
         schedule_dir=args.schedule_dir,
         schedule_data_path=args.schedule_data,
         schedule_warnings_path=args.schedule_warnings,
+        rendered_site_dir=args.rendered_site_dir,
     )
 
     print("Generated schedule data and schedule warnings.")

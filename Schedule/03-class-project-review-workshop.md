@@ -1,8 +1,8 @@
 ---
 layout: schedule
-title: "Project Review Workshop"
-mode: "schedule"
+date: '2026-09-08'
 ---
+
 # Project Review Workshop
 
 **⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.

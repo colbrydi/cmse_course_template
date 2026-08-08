@@ -46,6 +46,12 @@ or
 make schedule-spring
 ```
 
+4. Optional but recommended: enable pre-push schedule checks once per cloned repo:
+
+```bash
+make install-hooks
+```
+
 ## What The Generator Produces
 
 Running `make schedule-...` executes `scripts/update_schedule.py` and writes:
@@ -93,6 +99,36 @@ Build static site output into `_site/`:
 ```bash
 make build-site
 ```
+
+## Optional: Automatic Reminder Before Push
+
+This template includes a local Git pre-push hook that can verify schedule artifacts before every push.
+
+Enable it once per repository clone:
+
+```bash
+make install-hooks
+```
+
+What it does on `git push`:
+
+- runs `make schedule-fall` (or another target you set)
+- checks whether generated files changed
+- blocks push if updates are needed so you can commit them first
+
+Generated files checked:
+
+- `_data/schedule.yml`
+- `_data/schedule_warnings.yml`
+- `course_calendar.ics`
+
+Use a different schedule target for a specific push:
+
+```bash
+SCHEDULE_MAKE_TARGET=schedule-spring git push
+```
+
+Note: Git hook activation is local repository configuration, so each new clone must run `make install-hooks` once.
 
 ## GitHub Pages Recommendation
 

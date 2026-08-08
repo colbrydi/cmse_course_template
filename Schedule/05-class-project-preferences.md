@@ -1,8 +1,8 @@
 ---
 layout: schedule
-title: "Project Preferences and Team Formation Inputs"
-mode: "schedule"
+date: '2026-09-15'
 ---
+
 # Project Preferences and Team Formation Inputs
 
 **⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.

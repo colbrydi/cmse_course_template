@@ -16,6 +16,8 @@ The actual calendar date for each numbered course day is computed from the selec
 
 The website should show real dates, not the course-day number.
 
+Schedule markdown files may also include a `date:` field in YAML frontmatter. The generator updates that field automatically from the resolved calendar date, which makes it easy to render dynamic due dates in page content with Jekyll/Liquid such as `{{ page.date | date: "%B %d, %Y" }}`.
+
 ## Instructor Setup Checklist
 
 Use this checklist when starting a new course site from this template.

@@ -1,8 +1,8 @@
 ---
 layout: schedule
-title: "Project Context and First Contact"
-mode: "schedule"
+date: '2026-09-03'
 ---
+
 # Project Context and First Contact
 
 **⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
