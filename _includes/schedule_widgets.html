@@ -11,7 +11,7 @@
 </section>
 {% elsif include.part == "calendar" %}
 <div class="calendar-draft-wrap">
-  <h1>{{ include.calendar_title | default: "Course Calendar" }}</h1>ls
+  <h1>{{ include.calendar_title | default: "Course Calendar" }}</h1>
   {% assign subscription_path = include.subscription_path | default: "/course_calendar.ics" %}
   <p>
     Calendar subscription URL:
