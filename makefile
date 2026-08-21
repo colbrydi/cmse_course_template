@@ -1,6 +1,6 @@
-.PHONY: all help envs bundle-install install-hooks schedule schedule-fall schedule-spring calendar-ics serve serve-fall serve-spring serve-4001 stop-serve build-site clean-schedule-data
+.PHONY: all help envs bundle-install schedule schedule-fall schedule-spring calendar-ics serve serve-fall serve-spring serve-4001 stop-serve build-site clean-schedule-data
 
-all: serve-fall
+all: schedule-fall
 
 help:
 	@echo "Simple workflow"
@@ -11,7 +11,6 @@ help:
 	@echo "Commands"
 	@echo "  make envs"
 	@echo "  make bundle-install"
-	@echo "  make install-hooks"
 	@echo "  make schedule-fall"
 	@echo "  make schedule-spring"
 	@echo "  make calendar-ics"
@@ -30,9 +29,6 @@ envs:
 
 bundle-install:
 	./envs/bin/bundle install
-
-install-hooks:
-	bash scripts/install_git_hooks.sh
 
 schedule: schedule-fall
 
