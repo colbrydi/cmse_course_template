@@ -1,104 +1,69 @@
 # Schedule Filename Convention
 
-This template uses the filenames in the `Schedule` folder to define course pacing.
-
-The goal is that an instructor can run `ls Schedule` and immediately see the instructional flow of the semester in order, without needing to manually maintain schedule dates in a separate file.
+This document explains the naming rules that make the schedule system work. The schedule generator derives dates and links from the filenames in `Schedule/`, which keeps the semester timeline consistent without requiring every date to be entered manually.
 
 ## Core Rule
 
-The leading two-digit number is the course-day anchor.
+The leading two-digit number is the schedule anchor.
 
-- `01` means the first instructional meeting.
-- `02` means the second instructional meeting.
-- `03` means the third instructional meeting.
+- `01` means the first instructional meeting
+- `02` means the second instructional meeting
+- `03` means the third instructional meeting
 
-The actual calendar date for each numbered course day is computed from the selected `config/[semester]_calendar.yml` file.
+The actual calendar date for each item is computed from the selected `config/[semester]_calendar.yml` file. The website shows the real date, not the course-day number.
 
-The website should show real dates, not the course-day number.
+## Why this convention matters
 
-Schedule markdown files may also include a `date:` field in YAML frontmatter. The generator updates that field automatically from the resolved calendar date, which makes it easy to render dynamic due dates in page content with Jekyll/Liquid such as `{{ page.date | date: "%B %d, %Y" }}`.
+The naming scheme lets an instructor look at the file list and immediately understand the instructional flow of the semester. It also allows the generator to build a timeline that includes class meetings, same-day assignments, later due dates, and weekday-based follow-ups.
 
-## Instructor Setup Checklist
+## Instructor setup checklist
 
-Use this checklist when starting a new course site from this template.
+When starting a new course site from this template, the usual flow is:
 
-1. Update basic site identity in `/_config.yml`.
-	- Set `title`, `description`, and `baseurl` for your repository.
-	- Confirm the logo path points to your course or institution image.
-2. Choose the semester calendar in `config/`.
-	- Update `config/fall_calendar.yml` or `config/spring_calendar.yml`.
-	- Verify first day, last day, meeting days, and breaks/cancelled classes.
-3. Add schedule pages in `Schedule/` using the filename rules in this document.
-	- Start with core `NN-class-*` pages.
-	- Add due dates/checkpoints using `NN-same-*`, `NN-plus-*`, and `NN-next-*` as needed.
-4. Add reference/policy pages under `Guide/` (and other top-level reference folders if needed).
-	- Keep an entry page named `00-*.md` in each reference folder.
-	- Use `layout: guide` for reference pages.
-5. Generate schedule data.
-	- Run the schedule generation command from the Makefile for your semester.
-	- Confirm `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics` update.
-6. Review and clean warnings.
-	- Fix filename mismatches or missing anchors reported in `_data/schedule_warnings.yml`.
-7. Publish workflow check.
-	- Verify local serve/build works.
-	- Commit source files plus generated `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics` before publishing.
+1. Update `/_config.yml` with the course identity.
+2. Set the semester dates in `config/fall_calendar.yml` or `config/spring_calendar.yml`.
+3. Add schedule pages in `Schedule/`.
+4. Add guide pages in `Guide/`.
+5. Run the semester schedule generation command.
+6. Review warnings and fix any filename or date mismatches.
+7. Preview locally and publish.
 
-## Example Content Replacement Policy
-
-Pages in `Guide/`, `Schedule/`, and `index.md` that start with `**⚠️TODO:**` are placeholder examples.
-
-- Instructors should either delete these files or replace their full content.
-- Keep filename conventions in `Schedule/` if you want generated schedule links to keep working.
-- For reference folders like `Guide/`, keep one `00-*.md` entry page per folder for menu routing.
-
-Recommended replacement order:
-
-1. Replace `index.md` with a real course landing page.
-2. Replace `Guide/00-index.md` and `Guide/01-Syllabus.md`.
-3. Replace all `Schedule/NN-class-*.md` files used this semester.
-4. Re-run `make schedule-fall` or `make schedule-spring`.
-
-## Calendar Subscription File
+## Calendar subscription file
 
 This template generates `course_calendar.ics` from `_data/schedule.yml`.
 
-- The ICS includes schedule titles and dates for class and non-class events by default.
-- Class events are exported as timed events (default 12:30-13:40).
-- Non-class events are exported as all-day entries.
-- When a schedule item has a URL, that link is included in the event.
+- class events are exported as scheduled meetings
+- non-class calendar entries are exported as all-day items
+- a URL is included when a schedule item is published
 
 Common commands:
 
-- Regenerate both schedule data and ICS: `make schedule-fall` or `make schedule-spring`
-- Regenerate only ICS from existing schedule data: `make calendar-ics`
+- `make schedule-fall`
+- `make schedule-spring`
+- `make calendar-ics`
 
-## What Goes in `Schedule`
+## What belongs in `Schedule`
 
-Use the `Schedule` folder for course content that should stay attached to the instructional pacing of the course.
-
-Examples:
+Use `Schedule/` for course content that is tied to the pacing of the semester, such as:
 
 - class meeting pages
 - homework due dates
-- project checkpoints
-- quizzes
-- readings tied to a class day
+- workshop content
+- project milestones
+- reading or prep assignments tied to a date
 
-## What Stays in `config/[semester]_calendar.yml`
+## What belongs in `config/[semester]_calendar.yml`
 
-Use the semester calendar file for dates that are about the institution or the semester itself rather than course content.
+Use the semester calendar file for dates that are about the institution or the semester itself, such as:
 
-Examples:
-
-- first and last day of the semester
-- meeting days such as Tuesday and Thursday
+- first and last day of classes
+- meeting days
 - holidays
-- fall break or spring break
+- breaks
 - cancelled classes
-- snow days
 - manual date overrides
 
-## Filename Grammar
+## Filename grammar
 
 Use lowercase, hyphen-separated filenames.
 
@@ -120,8 +85,8 @@ Examples:
 
 Meaning:
 
-- `NN` is the instructional meeting number.
-- `class` means the item lands on that class meeting date.
+- `NN` is the instructional meeting number
+- `class` means the item is the primary page for that meeting
 
 ### 2. Same-day items
 
@@ -134,14 +99,14 @@ NN-same-topic-slug.md
 Examples:
 
 ```text
+03-same-check-in.md
 05-same-reading-quiz.md
-10-same-project-checkpoint.md
 ```
 
 Meaning:
 
-- The item happens on the same calendar date as class day `NN`.
-- Use this when an event is tied to the same day but is not the main class page.
+- the item occurs on the same date as class day `NN`
+- use this for due dates or activities attached to the same class day
 
 ### 3. Calendar-day offsets
 
@@ -154,15 +119,15 @@ NN-plus-D-topic-slug.md
 Examples:
 
 ```text
-06-plus-2-homework-1.md
+03-plus-2-project-checkpoint.md
 12-plus-5-reflection.md
 ```
 
 Meaning:
 
-- Start from class day `NN`.
-- Move forward `D` calendar days.
-- Use this for due dates such as "two days after Day 06."
+- start from class day `NN`
+- move forward `D` calendar days
+- useful for due dates that happen after class
 
 ### 4. Next weekday after a class day
 
@@ -181,21 +146,24 @@ mon tue wed thu fri sat sun
 Examples:
 
 ```text
+03-next-sun-example.md
 06-next-sun-homework-1.md
 08-next-fri-lab-checkpoint.md
 ```
 
 Meaning:
 
-- Start from class day `NN`.
-- Find the first named weekday strictly after that class date.
-- Use this for patterns such as "the following Sunday after class day 06."
+- start from class day `NN`
+- find the first matching weekday strictly after that date
+- useful when an assignment is intentionally due after a weekend or a specific weekday follow-up
 
-## Sorting Behavior
+### Example interpretation
 
-These filenames are designed to sort cleanly in directory listings.
+A filename like `03-next-sun-example.md` means: "make this item land on the first Sunday after the third class meeting." That is a common pattern for short reflections, weekend check-ins, or peer-feedback tasks that should not be due on the same day as the class itself.
 
-Examples:
+## Sorting behavior
+
+These filenames are designed to sort cleanly in a directory list:
 
 ```text
 01-class-welcome.md
@@ -206,18 +174,38 @@ Examples:
 03-class-project-selection.md
 ```
 
-This keeps all items associated with course day `01` together, then all items associated with course day `02`, and so on.
+This grouping makes it easy to review course flow by day.
 
-## Recommended Interpretation Rules
+## Recommended interpretation rules
 
-The schedule-generation script should interpret filenames as follows:
+The schedule-generation script interprets the filenames as follows:
 
 1. `NN-class-*` maps to the calendar date of course day `NN`.
 2. `NN-same-*` maps to the same calendar date as course day `NN`.
 3. `NN-plus-D-*` maps to `D` calendar days after course day `NN`.
 4. `NN-next-WDAY-*` maps to the first matching weekday after course day `NN`.
 
-The generated `_data/schedule.yml` file should then merge these items with non-class events defined in the semester calendar file.
+These generated entries are then merged with non-class events defined in the semester calendar file.
+
+## Hidden or draft pages
+
+If a page should remain in the repository but not be clickable in the public schedule, add either of these to the front matter:
+
+```yaml
+---
+publish: false
+---
+```
+
+or
+
+```yaml
+---
+published: false
+---
+```
+
+This is useful for draft pages, future lessons, and internal planning content.
 
 ## Missing Content and TBD Behavior
 

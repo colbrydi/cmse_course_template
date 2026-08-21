@@ -3,23 +3,53 @@ layout: schedule
 date: '2026-09-15'
 ---
 
-# Project Preferences and Team Formation Inputs
+# Publishing and Draft Content
 
-**⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
+This page documents how to keep some content in the repository without exposing it on the public website.
 
-## Session Goals
+## When to hide a page
 
-- Capture student interests and constraints.
-- Gather structured input for team formation.
-- Clarify expectations for early milestone pacing.
+Use a hidden schedule page when:
 
-## Required Actions
+- the content is a draft
+- the class is planned but not ready yet
+- you want a placeholder that remains in the repository
+- you want a future page without a public link
 
-1. Review project descriptions.
-2. Complete team-formation survey or profile form.
-3. Submit ranked project preferences.
+## How to hide a page
 
-## Notes
+Add one of these entries to the page front matter:
 
-- Preference submissions are one input among many.
-- Final team assignments should balance interest, skills, and project feasibility.
+```yaml
+---
+publish: false
+---
+```
+
+or
+
+```yaml
+---
+published: false
+---
+```
+
+The generator respects this and removes the clickable URL while keeping the schedule entry available in the source.
+
+## Recommended publishing practice
+
+- keep draft material in the repo
+- render only final public content in the site
+- use hidden pages for future lessons or in-progress workshop notes
+- review the generated schedule data before deployment
+
+## Final reminder
+
+The template is most effective when the public site is a clean, maintained guide for the current semester and the repository itself remains the source of truth for future work.
+
+## Before publishing
+
+- regenerate the schedule
+- review warnings
+- check hidden pages are not linked unexpectedly
+- confirm the site reflects the final intended structure

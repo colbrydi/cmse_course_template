@@ -1,40 +1,34 @@
 # Course Website Template
 
-This repository is a semester-portable, schedule-first course website template.
+This repository is a schedule-first course website template designed for instructors who want a maintainable, reproducible course site without hand-maintaining the semester timeline.
 
-## First-Time Instructor Checklist
+## Purpose of this template
 
-1. Update site settings in `_config.yml`.
-	- Set `title`, `description`, and `baseurl`.
-	- Confirm logo path.
-2. Replace example content pages.
-	- Update `index.md`.
-	- Replace pages in `Guide/`.
-	- Replace pages in `Schedule/`.
-	- Any page marked with `**⚠️TODO:**` is intended to be replaced.
-3. Update semester dates.
-	- Edit `config/fall_calendar.yml` or `config/spring_calendar.yml`.
-4. Generate schedule + calendar data.
-	- Run `make schedule-fall` or `make schedule-spring`.
-5. Review generated files before publishing.
-	- `_data/schedule.yml`
-	- `_data/schedule_warnings.yml`
-	- `course_calendar.ics`
+The template exists to help instructors:
 
-Core design goals:
+- keep the course calendar and page content aligned
+- generate schedule data automatically from markdown files
+- create a simple guide and schedule structure for students
+- publish a course website without custom build complexity
 
-- Calendar-driven class timeline from `config/[semester]_calendar.yml`
-- Instructor-friendly schedule authoring from files in `Schedule/`
-- Automatic `_data/schedule.yml` generation (no manual schedule YAML editing)
-- Build-as-you-go publishing with `TBD` placeholders for missing class content
+## First-time instructor checklist
 
-## Quick Start
+1. Update site metadata in `_config.yml`.
+   - set the site title, description, and base URL
+   - confirm the course branding or logo path
+2. Replace the template landing page in `index.md`.
+3. Update the guide pages in `Guide/`.
+4. Update the schedule files in `Schedule/`.
+5. Set the semester dates in `config/fall_calendar.yml` or `config/spring_calendar.yml`.
+6. Run the generator and review warnings before publishing.
 
-1. Update the semester calendar file:
-	- `config/fall_calendar.yml` or `config/spring_calendar.yml`
-2. Add or rename files in `Schedule/` using the naming convention in:
-	- `Instructors/Schedule_Filename_Convention.md`
-3. Generate schedule data for the semester:
+## Quick start
+
+1. Open the semester calendar file:
+   - `config/fall_calendar.yml`
+   - or `config/spring_calendar.yml`
+2. Add or rename schedule files in `Schedule/` using the naming patterns described in `Instructors/Schedule_Filename_Convention.md`.
+3. Generate the site data:
 
 ```bash
 make schedule-fall
@@ -46,37 +40,42 @@ or
 make schedule-spring
 ```
 
-4. Optional but recommended: enable pre-push schedule checks once per cloned repo:
+4. Preview locally:
 
 ```bash
-make install-hooks
+make serve
 ```
 
-## What The Generator Produces
+5. Publish when the site is ready.
 
-Running `make schedule-...` executes `scripts/update_schedule.py` and writes:
+## What the generator produces
+
+Running a schedule target executes `scripts/update_schedule.py` and creates:
 
 - `_data/schedule.yml`
 - `_data/schedule_warnings.yml`
 - `course_calendar.ics`
 
-Behavior:
+This is the generated output that the site uses for timeline rendering and calendar export.
 
-- All class days computed from the semester calendar are always included.
-- If a matching class file is missing, the class appears as `TBD` with no link.
-- Relative schedule items (same day, plus offset, next weekday) are added from filename parsing.
-- Non-class calendar events (holidays, breaks, closures) are merged into the same schedule timeline.
-- The generated `course_calendar.ics` includes schedule dates and links for calendar subscription.
+## Core workflow
 
-## Local Development
+The template is intentionally simple:
 
-Create or update the conda environment first:
+- the calendar defines semester dates
+- the schedule folder defines class-by-class content
+- the guide folder holds stable reference material
+- the generator assembles the public schedule and calendar data
+
+## Local development
+
+Create or update the environment:
 
 ```bash
 make envs
 ```
 
-Install/update local Ruby gems (inside the conda environment):
+Install the Ruby dependencies:
 
 ```bash
 make bundle-install
@@ -88,91 +87,45 @@ Serve locally:
 make serve
 ```
 
-If you are testing before a GitHub remote is configured, use the local-safe serve target from the Makefile.
-
-```bash
-make serve-local
-```
-
-Build static site output into `_site/`:
+Build static output:
 
 ```bash
 make build-site
 ```
 
-## Optional: Automatic Reminder Before Push
+## Optional pre-push check
 
-This template includes a local Git pre-push hook that can verify schedule artifacts before every push.
-
-Enable it once per repository clone:
+This template can also run a reminder check before push:
 
 ```bash
 make install-hooks
 ```
 
-What it does on `git push`:
+This helps ensure generated files are kept in sync before a publish.
 
-- runs `make schedule-fall` (or another target you set)
-- checks whether generated files changed
-- blocks push if updates are needed so you can commit them first
+## Recommended publishing workflow
 
-Generated files checked:
+1. update the semester calendar
+2. update class files in `Schedule/`
+3. regenerate schedule data
+4. review warnings
+5. preview locally
+6. commit the source and generated files together
+7. publish the site
 
-- `_data/schedule.yml`
-- `_data/schedule_warnings.yml`
-- `course_calendar.ics`
+## Notes for template authors and instructors
 
-Use a different schedule target for a specific push:
-
-```bash
-SCHEDULE_MAKE_TARGET=schedule-spring git push
-```
-
-Note: Git hook activation is local repository configuration, so each new clone must run `make install-hooks` once.
-
-## GitHub Pages Recommendation
-
-Use `main` as source branch and publish from the repository root.
-
-Recommended flow:
-
-1. Run `make schedule-fall` or `make schedule-spring` when calendar/schedule content changes.
-2. Commit source files plus generated `_data/schedule.yml`, `_data/schedule_warnings.yml`, and `course_calendar.ics`.
-3. In GitHub Pages settings, set source to `main` / `root`.
-4. Let GitHub Pages render Jekyll automatically.
-
-This keeps editing simple (including GitHub web edits) and avoids a local pre-build publish step.
-
-## Two Supported Workflows
-
-1. GitHub-first workflow (quick edits in web UI)
-	- Edit markdown/config files in GitHub.
-	- Ensure `_data/schedule.yml` is current when schedule/calendar changes.
-	- Let GitHub Pages render from `main` / `root`.
-
-2. Local preview workflow (quick validation before push)
-	- `make envs`
-	- `make bundle-install`
-	- `make serve`
-	- Preview locally, then push source files.
-
-## GitHub Rendering Compatibility Notes
-
-- GitHub Pages native rendering has a restricted plugin set.
-- This template is designed to work without requiring custom plugin execution in GitHub.
-- Schedule generation is handled by `scripts/update_schedule.py`, which writes `_data/schedule.yml` before commit.
+- Use `Guide/` for stable pages such as policies, logistics, and reference material.
+- Use `Schedule/` for date-specific course content.
+- Keep generated output in sync with source content.
+- Treat `TBD` as a placeholder when a class file is not yet ready.
+- Use `publish: false` or `published: false` to keep a page in the repo without making it clickable.
 
 ## Dependencies
 
 - Python 3
-- Conda (environment is defined in `environment.yml`)
-- `pyyaml` and `jupyterlab` are installed through the conda environment
-- Ruby and Bundler are installed through the conda environment
-- Jekyll is installed via `bundle install` using the `github-pages` gem stack in `Gemfile`
-
-## Notes for Template Authors
-
-- Manual `<!-- TOC_START -->` blocks are no longer required.
-- The right-side TOC is generated automatically from page headings.
-- You can still keep manual TOC sections if desired, but the default workflow is automatic.
+- Conda or an equivalent environment manager
+- Ruby/Bundler for Jekyll
+- Jekyll via the repository's `Gemfile`
+- `pyyaml` and related Python tooling for schedule generation
 

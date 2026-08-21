@@ -1,35 +1,46 @@
 ---
 layout: guide
-title: "Guide Overview"
+title: "Template Guide Overview"
 order: 0
 mode: "guide"
 ---
-# Guide Overview
+# Template Guide Overview
 
-**⚠️TODO:** This is example Guide content. Remove this file and replace it with your own course guide overview.
+This Guide is meant to tell future instructors how to use this course-website template rather than to model a specific course. It is a working reference for the structure, conventions, and maintenance steps used by this repository.
 
-CMSE 495 is a team-based, project-driven course. This guide serves as a reference for how the course operates throughout the semester.
-
-You are not expected to read every page at once. Instead, use the guide when you need clarification, structure, or examples.
-
-The course schedule tells you what needs to be done. The guide explains how and why we do it.
+The template is designed to stay simple: the course calendar determines the semester timeline, the `Schedule/` directory holds date-specific content, and the `Guide/` directory holds more stable reference material.
 
 ## How to Use This Guide
 
-Most students should start with the Syllabus, Weekly Routine, and Course Milestone Roadmap. The remaining pages are intended to be used as references when questions arise about communication, teamwork, project organization, technical practices, or course expectations.
+Start here when you want to understand the template as a system.
 
-This guide is organized to reduce duplication. Concepts are generally explained in one place and referenced elsewhere. If you find something that is unclear, outdated, inconsistent, or missing, please let the instructional team know or submit an issue through the course repository.
+- Use the Quick Start page to set up a new course site.
+- Use the Glossary page to understand the naming and publishing conventions.
+- Use the workflow pages to decide how to structure the semester and keep the site maintainable.
+- Use the schedule pages as examples of how class-day pages are written and linked into the course timeline.
 
-## A Note About Professional Judgment
+## Core Design
 
-This guide contains many examples, recommendations, and expectations. Not every situation you encounter during the semester will have a perfectly detailed set of instructions.
+This template separates content by purpose:
 
-When requirements are unclear, students are encouraged to use professional judgment, discuss options with their team, document important decisions, and focus on the goals of the project rather than searching for technical loopholes in the instructions.
+- `index.md` is the landing page for the course.
+- `Guide/` contains static reference material such as policies, procedures, and workflow notes.
+- `Schedule/` contains date-based class meeting pages.
+- `config/` defines the semester calendar.
+- `scripts/update_schedule.py` generates the schedule metadata automatically.
 
-Reasonable decisions made in good faith are generally viewed more favorably than passive waiting or excessive dependence on instructor direction.
+That separation keeps the website easier to maintain and reduces the chance that instructors will hand-edit generated output.
 
-## Bottom Line
+## Best Practices for New Instructors
 
-The goal of this course is not simply to complete assignments. The goal is to build a successful project while developing professional skills in communication, teamwork, project management, and technical practice.
+- Keep the course landing page brief and action-oriented.
+- Put stable policy and process information in the Guide.
+- Put weekly/class-specific content in the Schedule.
+- Change the calendar and schedule files before generating site data.
+- Review warnings from the schedule generator before publishing.
 
-Use this guide as a resource when you need it and contribute improvements when you find opportunities to make it better.
+## Template Philosophy
+
+The structure intentionally favors clarity over complexity. A course site should help students and instructors quickly find what they need without requiring a large maintenance burden. The template is therefore built around a small set of conventions rather than a large amount of custom logic.
+
+Use this guide as the reference manual for the repository itself, not as an example class page.

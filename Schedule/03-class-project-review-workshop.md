@@ -3,24 +3,36 @@ layout: schedule
 date: '2026-09-08'
 ---
 
-# Project Review Workshop
+# Schedule File Conventions
 
-**⚠️TODO:** This is example schedule content. Remove this file and replace it with your own class-day page.
+This page documents the core file conventions that make the generated schedule work correctly.
 
-## Session Goals
+## Core rule
 
-- Evaluate project options with evidence.
-- Define scope boundaries and success indicators.
-- Practice concise technical communication.
+Every file in `Schedule/` should match the naming pattern expected by the generator. That pattern allows the tool to infer the class day relationship and place the page correctly in the calendar.
 
-## In-Class Agenda
+## Common naming patterns
 
-1. Team review sprint.
-2. Structured project comparison.
-3. Lightning reports to class.
+- `NN-class-name.md` for a primary class session
+- `NN-same-name.md` for a page tied to the same class date
+- `NN-plus-D-name.md` for an offset relative to the anchor date
+- `NN-next-wed-name.md` for a date relative to the next weekday occurrence
 
-## Team Output
+## Recommended practice
 
-- One-page project review summary.
-- Draft definition of success metrics.
-- Recommended next action for Week 2.
+Use names that clearly describe the session content and keep them stable across semesters. Avoid vague filenames such as `notes.md` or `review.md` if they will be used in the course timeline.
+
+## Why this matters
+
+The schedule generator reads the file names and builds the timeline automatically. If the names are inconsistent, the generator may insert `TBD` entries or produce warnings that are easy to miss.
+
+## Instructor actions
+
+- keep filenames consistent
+- make sure each file has front matter with a valid `date`
+- verify the schedule after renaming or moving files
+- check the warning output before publishing
+
+## Next step
+
+Once the naming pattern is consistent, generate the schedule data and verify the rendered timeline visually.

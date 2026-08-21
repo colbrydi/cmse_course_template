@@ -1,12 +1,12 @@
 - date: '2026-09-01'
   week_start: '2026-08-31'
-  title: Course Welcome and Orientation
+  title: Template Orientation
   url: /Schedule/01-class-course-welcome
   event_type: class
   day_id: Day01
 - date: '2026-09-03'
   week_start: '2026-08-31'
-  title: Project Context and First Contact
+  title: Course Calendar and Schedule Setup
   url: /Schedule/02-class-project-first-contact
   event_type: class
   day_id: Day02
@@ -18,9 +18,21 @@
   day_id: null
 - date: '2026-09-08'
   week_start: '2026-09-07'
-  title: Project Review Workshop
+  title: Same-Day Check-In
+  url: /Schedule/03-same-check-in
+  event_type: same
+  day_id: Day03
+- date: '2026-09-08'
+  week_start: '2026-09-07'
+  title: Schedule File Conventions
   url: /Schedule/03-class-project-review-workshop
   event_type: class
+  day_id: Day03
+- date: '2026-09-10'
+  week_start: '2026-09-07'
+  title: Project Checkpoint
+  url: /Schedule/03-plus-2-project-checkpoint
+  event_type: plus
   day_id: Day03
 - date: '2026-09-10'
   week_start: '2026-09-07'
@@ -28,9 +40,15 @@
   url: null
   event_type: class
   day_id: Day04
+- date: '2026-09-13'
+  week_start: '2026-09-07'
+  title: 'Example: Due on the First Sunday After Class 03'
+  url: /Schedule/03-next-sun-example
+  event_type: next
+  day_id: Day03
 - date: '2026-09-15'
   week_start: '2026-09-14'
-  title: Project Preferences and Team Formation Inputs
+  title: Publishing and Draft Content
   url: /Schedule/05-class-project-preferences
   event_type: class
   day_id: Day05

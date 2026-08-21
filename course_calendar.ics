@@ -4,9 +4,9 @@ CALSCALE:GREGORIAN
 PRODID:-//Course Website Template//Schedule Calendar//EN
 X-WR-CALNAME:Course Calendar
 BEGIN:VEVENT
-UID:8f3e3c2401f7b7f64d2f4ed04d0c8ecc1a210019@course-website-template
+UID:8cfd9424120c8bb7a873212daa298c68d930f3aa@course-website-template
 DTSTAMP:20261210T000000Z
-SUMMARY:Course Welcome and Orientation
+SUMMARY:Template Orientation
 DTSTART:20260901T123000
 DTEND:20260901T134000
 DESCRIPTION:Course day: Day01\\nDetails: /cmse_course_template/Schedule/01-
@@ -14,9 +14,9 @@ DESCRIPTION:Course day: Day01\\nDetails: /cmse_course_template/Schedule/01-
 URL:/cmse_course_template/Schedule/01-class-course-welcome
 END:VEVENT
 BEGIN:VEVENT
-UID:5cef09463dd64d9907430a52c1907b19f3fa25e8@course-website-template
+UID:85fdbec70b1b8ca35f325d857026c979fe9df8f4@course-website-template
 DTSTAMP:20261210T000000Z
-SUMMARY:Project Context and First Contact
+SUMMARY:Course Calendar and Schedule Setup
 DTSTART:20260903T123000
 DTEND:20260903T134000
 DESCRIPTION:Course day: Day02\\nDetails: /cmse_course_template/Schedule/02-
@@ -31,14 +31,34 @@ DTSTART;VALUE=DATE:20260907
 DTEND;VALUE=DATE:20260908
 END:VEVENT
 BEGIN:VEVENT
-UID:00ef4c0516f95890d63b38fdcd05fd1acbd74bb7@course-website-template
+UID:65b010263a3f80ebf39cca89107ac4cb43b29e5b@course-website-template
 DTSTAMP:20261210T000000Z
-SUMMARY:Project Review Workshop
+SUMMARY:Same-Day Check-In
+DTSTART;VALUE=DATE:20260908
+DTEND;VALUE=DATE:20260909
+DESCRIPTION:Course day: Day03\\nDetails: /cmse_course_template/Schedule/03-
+ same-check-in
+URL:/cmse_course_template/Schedule/03-same-check-in
+END:VEVENT
+BEGIN:VEVENT
+UID:c9430424525d89578db96a90b6b82c6ff300cd4f@course-website-template
+DTSTAMP:20261210T000000Z
+SUMMARY:Schedule File Conventions
 DTSTART:20260908T123000
 DTEND:20260908T134000
 DESCRIPTION:Course day: Day03\\nDetails: /cmse_course_template/Schedule/03-
  class-project-review-workshop
 URL:/cmse_course_template/Schedule/03-class-project-review-workshop
+END:VEVENT
+BEGIN:VEVENT
+UID:b700534fc125f971c35f65ac7647d5128cdf2b88@course-website-template
+DTSTAMP:20261210T000000Z
+SUMMARY:Project Checkpoint
+DTSTART;VALUE=DATE:20260910
+DTEND;VALUE=DATE:20260911
+DESCRIPTION:Course day: Day03\\nDetails: /cmse_course_template/Schedule/03-
+ plus-2-project-checkpoint
+URL:/cmse_course_template/Schedule/03-plus-2-project-checkpoint
 END:VEVENT
 BEGIN:VEVENT
 UID:95546182e5b76d30d8c3182c12684efc9cd7b338@course-website-template
@@ -49,9 +69,19 @@ DTEND:20260910T134000
 DESCRIPTION:Course day: Day04
 END:VEVENT
 BEGIN:VEVENT
-UID:3a8bbe3b762b424f064e0bca61683490c6a49a27@course-website-template
+UID:5f19a3e246ff19425bf1411dbef8137dcae3e494@course-website-template
 DTSTAMP:20261210T000000Z
-SUMMARY:Project Preferences and Team Formation Inputs
+SUMMARY:Example: Due on the First Sunday After Class 03
+DTSTART;VALUE=DATE:20260913
+DTEND;VALUE=DATE:20260914
+DESCRIPTION:Course day: Day03\\nDetails: /cmse_course_template/Schedule/03-
+ next-sun-example
+URL:/cmse_course_template/Schedule/03-next-sun-example
+END:VEVENT
+BEGIN:VEVENT
+UID:701936f3f3adead74d2b53caf99f860e258ba0eb@course-website-template
+DTSTAMP:20261210T000000Z
+SUMMARY:Publishing and Draft Content
 DTSTART:20260915T123000
 DTEND:20260915T134000
 DESCRIPTION:Course day: Day05\\nDetails: /cmse_course_template/Schedule/05-
