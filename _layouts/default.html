@@ -627,7 +627,7 @@
         {% assign today_iso = 'now' | date: '%Y-%m-%d' %}
         {% assign today_target = nil %}
         {% assign next_target = nil %}
-        {% assign today_url = '/' | relative_url %}
+        {% assign today_url = nil %}
 
         {% for item in schedule_items %}
           {% assign item_iso = item.date | date: '%Y-%m-%d' %}
@@ -648,7 +648,9 @@
         {% endif %}
 
         <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
-        <a href="{{ today_url }}">Today</a>
+        {% if today_url %}
+          <a href="{{ today_url }}">Today</a>
+        {% endif %}
 
         {% assign guide_root_candidates = site.pages | where: "layout", "guide" | sort: "path" %}
         {% for item in guide_root_candidates %}
