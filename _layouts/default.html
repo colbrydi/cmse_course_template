@@ -609,19 +609,6 @@
     </div>
 
     <div class="nav-right">
-      <button class="view-toggle" type="button" aria-label="Toggle wide view" aria-pressed="false" title="Wide view" onclick="toggleWideView(this)">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-          <rect x="3.5" y="4.5" width="4.5" height="15" rx="1"></rect>
-          <rect x="9.25" y="4.5" width="5.5" height="15" rx="1"></rect>
-          <rect x="16" y="4.5" width="4.5" height="15" rx="1"></rect>
-        </svg>
-      </button>
-      <button class="menu-toggle" type="button" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)" aria-label="Open navigation" title="Open navigation">
-        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="1.8" stroke-linecap="round">
-          <path d="M4 7h16M4 12h16M4 17h16"></path>
-        </svg>
-      </button>
-
       <nav id="nav-links" class="nav-links" aria-label="Primary">
         {% assign schedule_items = site.data.schedule | sort: "date" %}
         {% assign today_iso = 'now' | date: '%Y-%m-%d' %}
@@ -651,10 +638,10 @@
           {% assign today_url = last_valid_target.url | relative_url | append: '#content' %}
         {% endif %}
 
-        <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
         {% if today_url %}
           <a href="{{ today_url }}">Today</a>
         {% endif %}
+        <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
 
         {% assign guide_root_candidates = site.pages | where: "layout", "guide" | sort: "path" %}
         {% for item in guide_root_candidates %}
@@ -675,6 +662,19 @@
           </form>
         </div>
       </nav>
+
+      <button class="menu-toggle" type="button" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)" aria-label="Open navigation" title="Open navigation">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke-width="1.8" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+      <button class="view-toggle" type="button" aria-label="Toggle wide view" aria-pressed="false" title="Wide view" onclick="toggleWideView(this)">
+        <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3.5" y="4.5" width="4.5" height="15" rx="1"></rect>
+          <rect x="9.25" y="4.5" width="5.5" height="15" rx="1"></rect>
+          <rect x="16" y="4.5" width="4.5" height="15" rx="1"></rect>
+        </svg>
+      </button>
     </div>
   </header>
 
