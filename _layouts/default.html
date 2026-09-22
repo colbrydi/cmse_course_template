@@ -639,9 +639,9 @@
         {% endif %}
 
         {% if today_url %}
-          <a href="{{ today_url }}">Today</a>
+          <a href="{{ today_url }}" title="Jump to the current or next class session" aria-label="Current Class: jump to the current or next class session">Current Class</a>
         {% endif %}
-        <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
+        <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %} title="Browse the full course schedule" aria-label="Browse the full course schedule">Schedule</a>
 
         {% assign guide_root_candidates = site.pages | where: "layout", "guide" | sort: "path" %}
         {% for item in guide_root_candidates %}
@@ -650,13 +650,13 @@
             {% assign folder_name = item.path | split: '/' | first %}
             {% assign folder_path_token = folder_name | append: '/' %}
             {% assign label = folder_name | replace: '-', ' ' | replace: '_', ' ' %}
-            <a href="{{ item.url | relative_url }}" {% if page.path contains folder_path_token %}class="active" aria-current="page"{% endif %}>{{ label }}</a>
+            <a href="{{ item.url | relative_url }}" {% if page.path contains folder_path_token %}class="active" aria-current="page"{% endif %} title="Open the {{ label }} guide" aria-label="Open the {{ label }} guide">{{ label }}</a>
           {% endif %}
         {% endfor %}
         <div class="search-box">
           <form role="search" action="{{ '/search.json' | relative_url }}" onsubmit="return false;">
             <label class="sr-only" for="search-input">Search site</label>
-            <input type="search" id="search-input" placeholder="Search site..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="results-container" aria-describedby="search-status">
+            <input type="search" id="search-input" placeholder="Search site..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-haspopup="listbox" aria-expanded="false" aria-controls="results-container" aria-describedby="search-status" title="Search the full site" aria-label="Search the full site">
             <div id="search-status" class="search-status" aria-live="polite"></div>
             <ul id="results-container" role="listbox" hidden></ul>
           </form>
