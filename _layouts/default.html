@@ -627,11 +627,13 @@
         {% assign today_iso = 'now' | date: '%Y-%m-%d' %}
         {% assign today_target = nil %}
         {% assign next_target = nil %}
+        {% assign last_valid_target = nil %}
         {% assign today_url = nil %}
 
         {% for item in schedule_items %}
           {% assign item_iso = item.date | date: '%Y-%m-%d' %}
           {% if item.url and item.url != "" %}
+            {% assign last_valid_target = item %}
             {% if item_iso == today_iso %}
               {% assign today_target = item %}
               {% break %}
@@ -645,6 +647,8 @@
           {% assign today_url = today_target.url | relative_url | append: '#content' %}
         {% elsif next_target %}
           {% assign today_url = next_target.url | relative_url | append: '#content' %}
+        {% elsif last_valid_target %}
+          {% assign today_url = last_valid_target.url | relative_url | append: '#content' %}
         {% endif %}
 
         <a href="{{ '/' | relative_url }}" {% if page.layout == "schedule" %}class="active" aria-current="page"{% endif %}>Schedule</a>
