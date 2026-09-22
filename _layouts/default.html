@@ -823,9 +823,7 @@
 
     const wideIcon = `
       <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M4 7v6h6"></path>
-        <path d="M20 7v6h-6"></path>
-        <path d="M4 7h16"></path>
+        <path d="M5 6.5h14v11H5z"></path>
       </svg>
     `;
 
@@ -833,7 +831,7 @@
       const isWide = document.body.classList.toggle("wide-view", enabled);
       button.setAttribute("aria-pressed", String(isWide));
       button.innerHTML = isWide ? threeColumnIcon : wideIcon;
-      const label = isWide ? "Switch to three-column view" : "Switch to wide view";
+      const label = isWide ? "Switch to single column view" : "Switch to single column view";
       button.setAttribute("title", label);
       button.setAttribute("aria-label", label);
       try {
