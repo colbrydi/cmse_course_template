@@ -142,8 +142,9 @@
       gap: 0.75rem;
     }
 
-    .menu-toggle {
-      display: none;
+    .menu-toggle,
+    .view-toggle {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 2.75rem;
@@ -155,6 +156,11 @@
       font-size: 1.1rem;
       cursor: pointer;
       box-shadow: var(--shadow);
+    }
+
+    .view-toggle {
+      font-size: 1rem;
+      line-height: 1;
     }
 
     .nav-links {
@@ -255,6 +261,19 @@
       margin: 0 auto;
       padding: 1.5rem;
       align-items: start;
+    }
+
+    body.wide-view .layout {
+      grid-template-columns: 1fr;
+    }
+
+    body.wide-view .left,
+    body.wide-view .right {
+      display: none;
+    }
+
+    body.wide-view main {
+      grid-column: 1 / -1;
     }
 
     .left,
@@ -561,6 +580,7 @@
     </div>
 
     <div class="nav-right">
+      <button class="view-toggle" type="button" aria-label="Toggle wide view" aria-pressed="false" title="Wide view" onclick="toggleWideView(this)">⇥</button>
       <button class="menu-toggle" type="button" aria-controls="nav-links" aria-expanded="false" onclick="toggleMenu(this)">☰</button>
 
       <nav id="nav-links" class="nav-links" aria-label="Primary">
@@ -757,6 +777,40 @@
       const expanded = nav.classList.toggle("open");
       button.setAttribute("aria-expanded", expanded ? "true" : "false");
     }
+
+    function setWideView(button, enabled) {
+      const isWide = document.body.classList.toggle("wide-view", enabled);
+      button.setAttribute("aria-pressed", String(isWide));
+      const label = isWide ? "Exit wide view" : "Wide view";
+      button.setAttribute("title", label);
+      button.setAttribute("aria-label", label);
+      try {
+        localStorage.setItem("courseWideView", String(isWide));
+      } catch (error) {
+        // Ignore storage issues in restricted environments.
+      }
+    }
+
+    function toggleWideView(button) {
+      const enabled = !button.getAttribute("aria-pressed") || button.getAttribute("aria-pressed") !== "true";
+      setWideView(button, enabled);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const wideToggle = document.querySelector(".view-toggle");
+      if (!wideToggle) {
+        return;
+      }
+
+      let enabled = false;
+      try {
+        enabled = localStorage.getItem("courseWideView") === "true";
+      } catch (error) {
+        enabled = false;
+      }
+
+      setWideView(wideToggle, enabled);
+    });
   </script>
 </body>
 </html>
