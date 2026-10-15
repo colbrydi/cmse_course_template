@@ -23,7 +23,10 @@ When starting a new course site from this template, the usual flow is:
 1. Update `/_config.yml` with the course identity.
 2. Set the semester dates in `config/fall_calendar.yml` or `config/spring_calendar.yml`.
 3. Add schedule pages in `Schedule/`.
-4. Add guide pages in `Guide/`.
+4. Add reference pages in `Guide/` or another top-level reference folder.
+   - Add an `index.md` entry page with `layout: guide` in each reference folder.
+   - Use numbered filenames to order the remaining reference pages.
+   - To keep a section available by URL while excluding it from the primary menu and site search, set its folder to `unlisted` in `section_visibility` in `/_config.yml`.
 5. Run the semester schedule generation command.
 6. Review warnings and fix any filename or date mismatches.
 7. Preview locally and publish.

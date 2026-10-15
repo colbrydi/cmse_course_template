@@ -87,6 +87,19 @@ publish: false
 
 This is especially useful for draft materials, future classes, or course planning pages that should stay in the repository but not appear in the public site.
 
+## Unlisted reference sections
+
+Each top-level reference section uses an `index.md` page with `layout: guide` as its landing page. Its numbered Markdown files determine the order of the remaining reference pages.
+
+By default, a reference section appears in the primary menu and site search. To keep a section available by URL while excluding it from those student-facing discovery paths, add it to `section_visibility` in `/_config.yml`:
+
+```yaml
+section_visibility:
+  Instructors: unlisted
+```
+
+This does not restrict access. It is appropriate for instructor planning and maintenance materials that may be public but should not clutter student navigation.
+
 ## Site upkeep tips
 
 - keep the home page brief and orientation-focused
@@ -109,4 +122,3 @@ This keeps the workflow straightforward, reduces branching complexity, and makes
 ## Long-term goal
 
 The goal of this template is not to build a course-specific site for one semester. It is to provide a durable, reusable structure that other instructors can understand, adapt, and maintain with minimal friction.
-
